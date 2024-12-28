@@ -94,7 +94,6 @@ private:
     friend class CustomAllocator;
 };
 
-// Реализация пользовательского контейнера
 template <typename T, typename Allocator = std::allocator<T>>
 class CustomContainer {
 public:
@@ -158,6 +157,7 @@ int factorial(int n) {
 
 int main() {
     // 1. std::map<int, int>
+    std::cout << "std::map" << std::endl; 
     std::map<int, int> stdMap;
     for (int i = 0; i < 10; ++i) {
         stdMap[i] = factorial(i);
@@ -167,6 +167,7 @@ int main() {
     }
 
     // 3. std::map<int, int> с пользовательским аллокатором
+    std::cout << "std::map с пользовательским аллокатором" << std::endl; 
     std::map<int, int, std::less<int>, CustomAllocator<std::pair<const int, int>>>
         customMap(CustomAllocator<std::pair<const int, int>>(10));
     for (int i = 0; i < 10; ++i) {
@@ -177,6 +178,7 @@ int main() {
     }
 
     // 6. Пользовательский контейнер
+    std::cout << "Пользовательский контейнер" << std::endl; 
     CustomContainer<int> customContainer;
     for (int i = 0; i < 10; ++i) {
         customContainer.push_back(i);
@@ -187,6 +189,7 @@ int main() {
     std::cout << "\n";
 
     // 8. Пользовательский контейнер с пользовательским аллокатором
+    std::cout << "Пользовательский контейнер с пользовательским аллокатором" << std::endl;
     CustomContainer<int, CustomAllocator<int>> customAllocContainer(10);
     for (int i = 0; i < 10; ++i) {
         customAllocContainer.push_back(i);
